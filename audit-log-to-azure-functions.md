@@ -71,7 +71,7 @@ Stream _Azure Active Directory - Audit Logs_ to a Node.js _Azure Functions_
 3. Click **Functions** inside Function Apps section
 4. Click **New function***
 5. Choose the template **Azure Event Hub trigger**
-    1. The first time that you to use this feature you must to install the extension **Microsoft.Azure.WebJobs.Extensions.EventHubs** 
+    1. The first time that you to use this feature you must to install the extension **Microsoft.Azure.WebJobs.Extensions.EventHubs** or see section __EventHubs extension manual installation__
     2. Then click **Install** to proceed with the instalation 
     3. Click **Continue** to finish these step
 6. Choose a unique function name
@@ -114,8 +114,32 @@ Stream _Azure Active Directory - Audit Logs_ to a Node.js _Azure Functions_
 11. Click in function name created previously
 12. Click **Monitor** item and you will see all events triggered by Azure Active Directory - Audit Log
 
+## EventHubs extension manual installation
+
+1. Access Home > Function App
+2. Click in Function App created previously
+3. Click **Platform features** tab item at the right panel
+4. Click **Advanced tools (Kudu)**
+5. Click **site** folder name
+6. Click **wwwroot** folder name
+7. Create (clicking +) or edit (clicking pencil) on site **extensions.csproj""
+8. Type the below content and click **Save** 
+```Xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <WarningsAsErrors />
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Script.ExtensionsMetadataGenerator" Version="1.1.*" />
+  </ItemGroup>
+</Project>
+```
+9.  At the black terminal __Kudu Remote Execution Console__ type **dotnet build extensions.csproj -o bin --no-incremental** to build bin folder
+
 # Notes
 
 * Sometimes the azure will delay around 2 minutes to write a new line into Audit Log
 * The Event Hub will start only after the line be write into Audit Log
-
+* The EventHubs extension template or manual installation must be done only once
