@@ -76,7 +76,7 @@ Stream _Azure Active Directory - Audit Logs_ to a Node.js _Azure Functions_
     3. Click **Continue** to finish these step
 6. Choose a unique function name
 7. Create or select a new Event Hub connection
-   1. Under **Event Hub88 tab
+   1. Under **Event Hub** tab
    2. Select the Event Hub Namespace created previously
    3. Select the Event Hub Name created previosly
    4. Select the default **RootManageSharedAccessKey** under Policy
